@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Table</title>
+
+    <style>
+        .title {
+            text-align: center;
+        }
+        .main {
+            height: 500px;
+        }
+        .p-table {
+            width: 600px;
+            margin: 0 auto;
+            border-bottom: 1px solid black;
+            /*border의 안쪽과 바깥쪽이 하나로 합쳐짐*/
+            border-collapse: collapse;
+        }
+        .p-table th, td {
+            border-bottom: 1px solid black;
+        }
+        .p-table th {
+            background-color: black;
+            font-size: 1rem;
+            color: white;
+        }
+        .p-table td:nth-child(1), td:nth-child(3) {
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <main>
+        <header class="title">
+            <h1>Table</h1>
+        </header>
+        <section class="main">
+            <table class="p-table">
+                <thead>
+                    <tr>
+                        <th>번호</th>
+                        <th>이름</th>
+                        <th>나이</th>
+                        <th>성별</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>1</td>
+                        <td>홍길동</td>
+                        <td>21</td>
+                        <td>남자</td>
+                    </tr>
+                    <tr>
+                        <td>2</td>
+                        <td>김선희</td>
+                        <td>25</td>
+                        <td>여자</td>
+                    </tr>
+                    <tr>
+                        <td>3</td>
+                        <td>배지연</td>
+                        <td>30</td>
+                        <td>여자</td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+    </main>
+</body>
+</html>

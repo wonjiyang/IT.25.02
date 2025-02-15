@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Script_array</title>
+</head>
+<body>
+    <h1>array</h1>
+</body>
+<script>
+    //배열 선언
+    //크기가 정해져 있지 않기 때문에 let을 쓰면 재정의 가능
+    const arr01 = [];
+    const arr02 = new Array();
+    const arr03 = [1,2,3,4];
+
+    //삽입
+    //자바처럼 인덱스를 이용할 수 있지만 안한다.
+    //push 함수를 이용해서 삽입
+    arr01.push(1);
+    arr01.push(2);
+    arr01.push(3);
+    arr01.push(4);
+    arr01.push(5);
+    arr01.push(6);
+    arr01.push(7);
+
+    //삭제01-맨 앞의 요소를 반환 후 삭제 shift();
+    const delVal = arr01.shift();
+    console.log(`삭제대상: ${delVal}`);
+    console.log(`배열: ${arr01}`);
+    
+    //삭제02-맨 뒤의 요소를 반환 후 삭제 pop();
+    const popVal = arr01.pop();
+    console.log(`삭제대상: ${popVal}`);
+    console.log(`배열: ${arr01}`);
+
+    //slice(offset, count); > 시작위치로부터 몇카운트 가져올 것인지
+    const arr04 = arr01.slice(0, 3);//0번에서 부터 3개
+    console.log(`arr04: ${arr04}`);
+    console.log(`arr01: ${arr01}`);
+</script>
+</html>

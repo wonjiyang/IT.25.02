@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Form</title>
+</head>
+<body>
+    <h1>Form</h1>
+    <form>
+        <label for="myName">이름: </label>
+        <input type="text" name="myName" id="myName" value=""><br>
+
+        <label for="myAge">나이: </label>
+        <input type="number" name="myAge" id="myAge" value=""><br>
+
+        <label for="Passwd">패스워드: </label>
+        <input type="password" name="Passwd" id="Passwd" value=""><br>
+        
+        <label>성별: </label>
+        <input type="radio" name="gender" id="man" value="man" checked>
+        <label for="man">남자</label>
+        <input type="radio" name="gender" id="woman" value="woman">
+        <label for="woman">여자</label><br>
+
+        <label>취미: </label>
+        <input type="checkbox" name="hobby" id="movie" value="movie">
+        <label for="movie">영화감상</label>
+        <input type="checkbox" name="hobby" id="music" value="music">
+        <label for="music">음악감상</label>
+        <input type="checkbox" name="hobby" id="game" value="game">
+        <label for="game">게임</label><br>
+
+        <label>좋아하는 과일</label>
+        <select name="" id="">
+            <option value="apple">사과</option>
+            <option value="melon">멜론</option>
+            <option value="banana">바나나</option>
+            <option value="mango">망고</option>
+        </select><br>
+
+        <!--
+            form을 위한 버튼
+            input이나 button 태그 사용
+            form 태그 안에 위치
+        -->
+        <button type="submit">전송</button>&nbsp;
+        <button type="reset">리셋</button>
+    </form>
+</body>
+</html>
