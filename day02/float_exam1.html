@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Float</title>
+
+    <style>
+        .box {
+            width: 200px;
+            height: 200px;
+            border: 1px solid rgb(0, 0, 0);
+        }
+
+        .box1 {
+            float: left;
+        }
+
+        .box2 {
+            float: left;
+        }
+
+        .box3 {
+            float: right;
+        }
+
+        .box4 {
+            float: right;
+        }
+
+        .box5 {
+            float: left;
+        }
+
+        /*float는 위쪽으로부터 상속받아 움직이기 때문에 clear로 상속 해제*/
+        .box6 {
+            clear: both;
+        }
+        </style>
+</head>
+<body>
+    <h1>Float</h1>
+    <div class="box box1">박스1</div>
+    <div class="box box2">박스2</div>
+    <div class="box box3">박스3</div>
+    <div class="box box4">박스4</div>
+    <div class="box box5">박스5</div>
+    <div class="box box6">박스6</div>
+</body>
+</html>
