@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>객체</h1>
+</body>
+<script>
+    class User {
+        name;
+        age;
+        //생성자
+        constructor() {
+
+        }
+        //함수
+        getName() {
+            return this.name;
+        }
+    }
+
+    const user1 = new User();
+    user1.name = '홍길동';
+    user1['age'] = 500;
+    user1.eat = function() {
+        console.log('나는 먹는다');
+    }
+    
+    const user2 = new User();
+    user2.name = '김철수';
+    user2['age'] = 40;
+
+    User.prototype.getInfo = function() {
+        console.log('안녕');
+    }
+    
+    console.log(user1.name, user1['age']);
+    console.log(user2.name, user2['age']);
+
+    user1.eat();
+    user2.getInfo();
+</script>
+</html>

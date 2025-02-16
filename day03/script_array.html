@@ -36,9 +36,32 @@
     console.log(`삭제대상: ${popVal}`);
     console.log(`배열: ${arr01}`);
 
-    //slice(offset, count); > 시작위치로부터 몇카운트 가져올 것인지
+    //slice(offset, count); > 시작위치로부터 몇카운트 가져올 것인지(원본유지)
     const arr04 = arr01.slice(0, 3);//0번에서 부터 3개
     console.log(`arr04: ${arr04}`);
     console.log(`arr01: ${arr01}`);
+
+    //splice > 원본에서 추줄해 삭제
+    const arr05 = arr01.splice(0, 3);
+    console.log(`arr05: ${arr05}`);
+    console.log(`arr01: ${arr01}`);
+
+    //랜덤숫자 정렬하기
+    //함수
+    function compare(me, next) {
+        return me > next ? 1 : -1;
+    }
+
+    //배열
+    const sortArray = [];
+    for(let i = 0; i < 10; i++) {
+        const val = Math.floor(Math.random() * 50) + 1;
+        sortArray.push(val);
+    }
+    console.log(`정렬 전: ${sortArray}`);
+    
+    //정렬
+    sortArray.sort(compare);
+    console.log(`정렬 후: ${sortArray}`);
 </script>
 </html>

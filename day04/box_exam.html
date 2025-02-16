@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .container {
+            width: 800px;
+        }
+        .header, .btn-area {
+            text-align: center;
+            margin: 20px;
+        }
+        .box-area {
+            width: 800px;
+            height: 400px;
+            border: 1px solid black;
+            border-radius: 15px/20px;
+            overflow: auto;
+        }
+        .box {
+            width: 150px;
+            height: 150px;
+            float: left;
+            margin: 10px;
+        }
+        .btn {
+            width: 80px;
+            height: 40px;
+            background-color: #fff;
+            border: none;
+            border-radius: 10px;
+            color: white;
+            font-size: 1.2rem;
+        }
+        .add {
+            background-color: blue;
+        }
+        .del {
+            background-color: red;
+        }
+    </style>
+</head>
+<body>
+    <main class="container">
+        <header class="header">랜덤컬러 박스 만들기</header>
+        <section class="box-area">
+
+        </section>
+        <section class="btn-area">
+            <button type="button" class="btn add" onclick="addBox();">추가</button>
+            <button type="button" class="btn del" id="delBtn">삭제</button>
+        </section>
+    </main>
+</body>
+<script>
+    const boxArea = document.querySelector('.box-area');
+
+    const addBox = () => {
+        const box = document.createElement('div');
+        box.className = 'box';
+        box.style.backgroundColor = makeColor();
+        boxArea.append(box);//html 객체를 append하면 html이 먹힌다
+    };
+
+    const delEvent = (e) => {
+        //box 공간에서 마지막 박스 가져오기
+        const lastBox = boxArea.lastElementChild;//div 안에서 마지막 요소
+        if(lastBox) {
+            boxArea.removeChild(lastBox);
+        }
+    };
+
+    //RGB 색 만드는 함수
+    function makeColor() {
+        let rgbColor = [];
+        for(let i = 0; i <3; i++) {
+            let rand = Math.floor(Math.random() * 256);//0~255
+            //16진수 전환
+            let hexVal = rand.toString(16);
+            //if (==) > 값만 비교, (===) 타입까지 비교
+            //올바른 16진수를 위해 0을 붙인다
+            if(hexVal.length === 1) {
+                hexVal = '0' + hexVal;
+            }
+            //배열에 저장
+            rgbColor.push(hexVal);
+        }
+        const newColor = '#' + rgbColor.join('');//#11aa33
+        return newColor;
+    }
+
+    function initEvent() {
+        //삭제 버튼 이벤트 추가
+        const delBtn = document.querySelector('#delBtn');
+        //이벤트 부여
+        delBtn.addEventListener('click', delEvent);
+    }
+
+    //즉시 실행 함수
+    (
+        function() {
+            initEvent();
+        }
+    )();
+</script>
+</html>

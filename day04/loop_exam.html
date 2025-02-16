@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Loop</title>
+</head>
+<body>
+    <h1>Loop</h1>
+    <div id="list"></div>
+</body>
+<script>
+    const data = {
+        id: 1,
+        name: '서울'
+    };
+
+    const arr = [1,2,3,4,5,6];
+
+    //foreach 1
+    const div = document.querySelector('#list')
+    //arr 값 가져오기 - loop가 가능한 형태만 가능
+    for(val of arr) {
+        div.append(val);
+    }
+
+    //html 내용 삭제
+    div.innerHTML = '';
+
+    //arr 인덱스 혹은 키값 가져오기 - loop 또는 객체형 가능
+    for(val in arr) {
+        div.append(val);
+    }
+    //data 값, 객체형은 in 사용
+    for(val in data) {
+        div.append(val + ", ");
+    }
+</script>
+</html>

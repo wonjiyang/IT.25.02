@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>객체 복사</h1>
+</body>
+<script>
+    class Student {
+        name;
+        age;
+        getInfo() {
+            const info = `이름 ${name}, 나이 ${age}`;
+            return info;
+        }
+    }
+    const st1 = new Student();
+    st1.name = '홍길동';
+    st1.age = 500;
+
+    //얕은 복사
+    st2 = st1;
+    st2.name = '김철수';
+
+    //원본과 복사본 모두 값이 바뀐다.
+    console.log(st1.name, st2.name);
+    
+    //깊은 복사
+    st3 = Object.assign({}, st1);
+    st3.name = '김민수';
+
+    //원본은 유지하고 복사본만 값이 바뀐다.
+    console.log(st1.name, st3.name);
+</script>
+</html>

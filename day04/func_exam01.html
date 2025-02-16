@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Function</title>
+</head>
+<body>
+    <h1>Function</h1>
+</body>
+<script>
+    //매개변수 제한 없고 타입 쓰지 않음 변수명만
+    function add(y) {
+        const x = rand();
+        console.log(`랜덤값: ${x}`);
+        return x + y;
+    }
+
+    //호이스팅
+    console.log(add(10));
+
+    function rand() {
+        return Math.floor(Math.random() * 50) + 1;
+    }
+</script>
+</html>
