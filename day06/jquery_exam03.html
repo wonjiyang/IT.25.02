@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+</body>
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.7.1/dist/jquery.min.js"></script>
+<script>
+    arr = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
+
+    //jquery loop
+    let sum = 0;
+    let count = 0;
+    $.each(arr, function(inde, obj) {
+        count++;
+        console.log(obj);
+        if(sum > 15) {
+            //콜백함수로 each가 loop함수이므로 break문, continue문 사용 불가능
+            //return: continue, 이것만 끝
+            //return false: break
+            return false;
+        }
+        sum = sum + obj;
+    });
+
+    console.log(count, sum);
+</script>
+</html>

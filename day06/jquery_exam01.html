@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+</head>
+<body>
+    <main>
+        <div>
+            <label for="num01">첫번 째 값</label>
+            <input type="text" name="num01" id="num01">&nbsp;
+            <label for="num02">첫번째 두번</label>
+            <input type="text" name="num02" id="num02">&nbsp;
+            <button type="button" id="sumBtn">합 구하기</button><br>
+            <label>합: </label>
+            <span id="result">0</span>
+        </div>
+    </main>
+</body>
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.7.1/dist/jquery.min.js"></script>
+<script>
+
+    //javascript
+
+    function initBtnEvent() {
+        const sumBtn = document.querySelector('#sumBtn');
+        sumBtn.addEventListener('click', e => sumValue());
+    }
+
+    const sumValue = () => {
+        const num01 = Number(document.querySelector('#num01').value);
+        const num02 = Number(document.querySelector('#num02').value);
+
+        const sum = num01 + num02;
+        const result = document.querySelector('#result');
+        result.innerText = sum;//기존내용있어도 현재 내용으로 치환
+    }
+    
+    //시작 함수
+    (function() {
+        initBtnEvent();
+    })();
+</script>
+</html>

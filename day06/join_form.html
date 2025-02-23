@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <style>
+        .container {
+            max-width: 1140px;
+            min-width: 600px;
+        }
+        #mailAddr:read-only {
+            background-color: #fafafa;
+        }
+    </style>
+</head>
+<body class="bg-light">
+    <main class="container">
+        <!--text-center: 가운데-->
+        <header class="mt-5 mb-5 text-center">
+            <span class="text-dark fw-bold h2">회원가입</span>
+        </header>
+        <section class="main-form">
+            <form>
+                <div>
+                    <label for="userID" class="form-label">아이디</label>
+                </div>
+                <div class="row mb-3">
+                    <div class="col-8">
+                        <!--form-control: 자기 영역에서 width 100%-->
+                        <input type="text" name="userID" id="userID" class="form-control">
+                    </div>
+                    <!--text-end: 오른쪽 끝-->
+                    <div class="col-4 text-end">
+                        <button type="button" class="btn btn-secondary">중복체크</button>
+                        <button type="button" class="btn btn-warning">ID 변경</button>
+                    </div>
+                </div>
+                <div class="mb-3">
+                    <label for="passwd" class="form-label">패스워드</label>
+                    <input type="password" name="passwd" id="passwd" class="form-control">
+                </div>
+                <div class="mb-3">
+                    <label for="passwd" class="form-label">패스워드 확인</label>
+                    <input type="password" name="passwdConfirm" id="passwdConfirm" class="form-control">
+                </div>
+                <div class="mb-3">
+                    <label for="userName" class="form-label">이름</label>
+                    <input type="text" name="userName" id="userName" class="form-control">
+                </div>
+                <div>
+                    <label for="user" class="form-label">성별</label>
+                </div>
+                <div class="mb-3">
+                    <div class="form-check form-check-inline">
+                        <input type="radio" name="gender" id="man" class="form-check-input" value="남자" checked>
+                        <label for="man">남자</label>
+                    </div>
+                    <div class="form-check form-check-inline">
+                        <input type="radio" name="gender" id="woman" class="form-check-input" value="여자">
+                        <label for="woman">여자</label>
+                    </div>
+                </div>
+                <div class="mb-3">
+                    <label for="userBirth" class="form-label">생년월일(6자)</label>
+                    <input type="text" name="userBirth" id="userBirth" class="form-control" maxlength="6" oninput="inputBirth(event, this);">
+                </div>
+                <div class="mb-3">
+                    <label for="userPhone" class="form-label">연락처(모바일)</label>
+                    <input type="text" name="userPhone" id="userPhone" class="form-control" maxlength="13">
+                </div>
+                <div>
+                    <label class="form-label">이메일</label>
+                </div>
+                <div class="row mb-3">
+                    <div class="col-9">
+                        <div class="input-group">
+                            <input type="text" name="mailID" id="mailID" class="form-control">
+                            <span class="input-group-text">@</span>
+                            <input type="text" name="mailAddr" id="mailAddr" class="form-control" readonly>
+                        </div>
+                    </div>
+                    <div class="col-3">
+                        <select name="mailSelect" id="mailSelect" class="form-select" onchange="selectMail(this);">
+                            <option value="none">::선택</option>
+                            <option value="self">직접입력</option>
+                            <option value="naver.com">네이버</option>
+                            <option value="daum.net">다음</option>
+                            <option value="kakao.com">카카오</option>
+                            <option value="gmail.com">지메일</option>
+                            <option value="yahoo.co.kr">야후</option>
+                        </select>
+                    </div>
+                </div>
+                <div>
+                    <label class="form-label">주소</label>
+                </div>
+                <div class="row mb-3">
+                    <div class="col-9">
+                        <input type="text" name="userAddr" id="userAddr" class="form-control">
+                    </div>
+                    <div class="col-3 text-end">
+                        <button type="button" class="btn btn-primary" onclick="findAddr();">주소 찾기</button>
+                    </div>
+                </div>
+                <div class="mb-3">
+                    <input type="text" name="userAddrDetail" id="userAddrDetail" class="form-control">
+                </div>
+                <div class="row mt-5 mb-5">
+                    <div class="col-12 text-center">
+                        <button type="button" class="btn btn-primary" onclick="join();">회원가입</button>
+                        <button type="button" class="btn btn-secondary">취소</button>
+                    </div>
+                </div>
+            </form>
+        </section>
+    </main>
+</body>
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.7.1/dist/jquery.min.js"></script>
+<script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+<script>
+    //생년월일에 숫자만 들어가게 설정
+    const inputBirth = (e, el) => {
+        e.preventDefault();//이전 이벤트 완료 전에 새로운 이벤트 무시: 더블클릭 방지
+        let val = el.value;
+        // /[]/: 범위를 제외하고 무시
+        val = val.replace(/[^0-9]/g, '');
+        el.value = val;//변경된 값으로 치환
+    }
+
+    //mail 선택
+    const selectMail = (el) => {
+        //제이쿼리
+        const selectedVal = $(el).val();
+        // const selectedVal = $('#mailSelect > option:selected').val();
+        
+        //일반 스크립트
+        // const selectedVal = el.option[el.selectedIndex].value;
+
+        const mailAddr = $('#mailAddr');
+        mailAddr.attr('readOnly', true);
+        mailAddr.val('');//값 초기화
+
+        if(selectedVal === 'self') {
+            //attr: 속성값을 바꿀 때 사용
+            //prop: 상태값을 바꿀 때 사용
+            mailAddr.attr('readOnly', false);
+        }else if(selectedVal !== 'none') {
+            mailAddr.val(selectedVal);
+        }
+    }
+
+    //주소 찾기
+    const findAddr = () => {
+        new daum.Postcode({
+            oncomplete: function(data) {
+                let fullAddr = ''; //전체 주소
+                let extraAddr = ''; //빌딩, 아파트, 동
+                //도로명 주소
+                if(data.userSelectedType === 'R') {
+                    fullAddr = data.roadAddress;
+                    //법정동 주소
+                    if($.trim(data.bname).length > 0) {
+                        extraAddr = data.bname;
+                    }
+                }else {
+                    fullAddr = data.jibunAddress;
+                }
+                //빌딩 또는 아파트
+                if($.trim(data.buildingName).length > 0) {
+                    extraAddr += extraAddr.length > 0 ? ', ' + data.buildingName : data.buildingName;
+                }
+                //전체 주소 만들기
+                fullAddr += extraAddr.length > 0 ? '(' + extraAddr +')' : '';
+                //주소값 삽입
+                $('#userAddr').val(fullAddr);
+            }
+        }).open(); 
+    }
+
+    //회원가입
+    //화살표함수는 호이스팅이 안되기 때문에 일반 함수
+    function validated() {
+        const invalidMessasges = {
+            userID: '아이디를 입력하십시오',
+            passwd: '패스워드를 입력하십시오',
+            passwdConfirm: '패스워드 확인을 입력하십시오',
+            userName: '이름을 입력하십시오',
+            userBirth: '생년월일을 입력하십시오',
+            userPhone: '전화번호를 입력하십시오',
+            mailID: '이메일을 입력하십시오',
+            mailAddr: '메일주소를 선택하십시오',
+            userAddr: '주소를 입력하십시오'
+        };
+        const inputEle = $('input[type="password"], input[type="text"]').not('input[type="text"]#userAddrDetail');
+        
+        let isValid = true;
+        let id = '';
+        //jquery 콜백 함수 파라미터에 obj는 javascript Dom 객체(jquery에서 주는 매개변수일지라도 내부코드는 자바스크립트이기 때문에)
+        $.each(inputEle, function(index, obj) {
+            const value = obj.value;
+
+            if($.trim(value).length === 0) {
+                isValid = false;
+                id = obj.id;
+                return false;
+            }
+        });
+
+        console.log($('#passwd').val() , $('#passwdConfirm').val())
+
+        if(isValid == false) {
+            //함수 객체 찾는 방법: [], .
+            alert(invalidMessasges[id]);
+        }else if($('#passwd').val() !== $('#passwdConfirm').val()) {
+            alert('비밀번호가 다릅니다');
+            isValid = false;
+        }
+        return isValid;
+    }
+
+    function join() {
+        if(validated()) {
+            alert('회원가입 성공!');
+        } 
+    }
+</script>
+</html>

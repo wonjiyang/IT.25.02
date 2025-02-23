@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+</head>
+<body>
+    <main>
+        <div>
+            <label for="num01">첫번 째 값</label>
+            <input type="text" name="num01" id="num01">&nbsp;
+            <label for="num02">첫번째 두번</label>
+            <input type="text" name="num02" id="num02">&nbsp;
+            <button type="button" id="sumBtn">합 구하기</button><br>
+            <label>합: </label>
+            <span id="result">0</span>
+        </div>
+    </main>
+</body>
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.7.1/dist/jquery.min.js"></script>
+<script>
+
+    //jquery
+    //객체 클래스이기 때문에 모든 기능을 함수로 처리한다.
+    
+    function initBtnEvent() {
+        const sumBtn = $('#sumBtn');
+        sumBtn.on('click', e => sumValue());
+    }
+
+    const sumValue = () => {
+        const num01 = Number($('#num01').val());
+        const num02 = Number($('#num02').val());
+
+        const sum = num01 + num02;
+        const result = $('#result');
+        result.text(sum);
+    }
+
+    //시작 함수
+    (function() {
+        initBtnEvent();
+    })();
+</script>
+</html>
